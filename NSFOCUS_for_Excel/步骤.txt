@@ -1,0 +1,18 @@
+1.合并各个主机的“漏洞信息”表到“host.xls”
+3.cvss.py 获取cvss评分与CVE编号，cvss.xls
+4.汇总 index.xls(漏洞名称、应用分类、影响IP)、cvss.xls、host.xls
+5.注意192*.xls
+
+
+
+是否存在公开的漏洞利用工具（是/否）
+=IF(ISNUMBER(FIND("原理",A2)),"是",IF(ISNUMBER(FIND("反序列",A2)),"是",IF(ISNUMBER(FIND("命令执行",A2)),"是",IF(ISNUMBER(FIND("代码执行",A2)),"是",IF(ISNUMBER(FIND("未授权",A2)),"是","否")))))
+
+
+修复优先级（初次）
+=IF(J2>10,"紧急修复",IF(J2>8,"优先修复",IF(J2>5,"建议修复","可接受风险")))
+
+
+"修复优先级得分
+（初次）"
+=IF(I2="是",H2+2,H2)
